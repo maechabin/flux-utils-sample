@@ -10,7 +10,7 @@ Flux Utilsを使った実装サンプル（かなり簡易版）
 http://jsrun.it/maechabin/WiIU
 
 ## サンプルソース
-- [bundle.js](https://github.com/maechabin/flux-utils-sample/blob/master/dist/bundle.js)
+- [src/app.js](https://github.com/maechabin/flux-utils-sample/blob/master/src/app.js)
 - [index.html](https://github.com/maechabin/flux-utils-sample/blob/master/index.html)
 
 ## サンプルの確認
