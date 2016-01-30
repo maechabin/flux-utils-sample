@@ -35,7 +35,7 @@ $ open ./index.html
 
 ### 1. 「.src/app.js」を修正したら、以下のコマンドを実行
 ~~~
-$ browserify ./src/app.js -o ./dist/bunde.js
+$ browserify ./src/app.js -o ./dist/bundle.js
 ~~~
 
 ※browserifyがシステムにインストールされていない場合は、以下コマンドでインストール
