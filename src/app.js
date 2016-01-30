@@ -1,6 +1,6 @@
-import React, { PropTypes, Component } from "react";
-import { render } from "react-dom";
-import { Dispatcher } from "flux";
+import React, { PropTypes, Component } from 'react';
+import { render } from 'react-dom';
+import { Dispatcher } from 'flux';
 import { ReduceStore, Container } from 'flux/utils';
 
 // Dispatcher
@@ -8,7 +8,7 @@ const dispatcher = new Dispatcher();
 
 // Action
 const keys = {
-  SEND: "send"
+  SEND: 'send'
 };
 
 const FormAction = {
@@ -25,7 +25,7 @@ class FormStore extends ReduceStore {
 
   getInitialState() {
     return {
-      "value": null
+      'value': null
     };
   }
 
@@ -33,7 +33,7 @@ class FormStore extends ReduceStore {
     switch (action.type) {
       case keys.SEND:
         return {
-          "value": action.value
+          'value': action.value
         };
     };
   }
@@ -68,7 +68,7 @@ class FormInput extends Component {
   _send(e) {
     e.preventDefault();
     FormAction.send(this.refs.myInput.value.trim());
-    this.refs.myInput.value = "";
+    this.refs.myInput.value = '';
     return;
   }
   render() {
@@ -92,7 +92,6 @@ class FormDisplay extends Component {
 
 // Container
 const FormAppContainer = Container.create(FormApp);
-
 
 // ReactDom
 render(

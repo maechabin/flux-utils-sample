@@ -25582,19 +25582,19 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":46}],179:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require("react-dom");
+var _reactDom = require('react-dom');
 
-var _flux = require("flux");
+var _flux = require('flux');
 
-var _utils = require("flux/utils");
+var _utils = require('flux/utils');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25609,7 +25609,7 @@ var dispatcher = new _flux.Dispatcher();
 
 // Action
 var keys = {
-  SEND: "send"
+  SEND: 'send'
 };
 
 var FormAction = {
@@ -25633,19 +25633,19 @@ var FormStore = function (_ReduceStore) {
   }
 
   _createClass(FormStore, [{
-    key: "getInitialState",
+    key: 'getInitialState',
     value: function getInitialState() {
       return {
-        "value": null
+        'value': null
       };
     }
   }, {
-    key: "reduce",
+    key: 'reduce',
     value: function reduce(state, action) {
       switch (action.type) {
         case keys.SEND:
           return {
-            "value": action.value
+            'value': action.value
           };
       };
     }
@@ -25671,23 +25671,23 @@ var FormApp = function (_Component) {
   }
 
   _createClass(FormApp, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       console.log(this.state);
       return _react2.default.createElement(
-        "form",
+        'form',
         null,
         _react2.default.createElement(FormInput, null),
         _react2.default.createElement(FormDisplay, { data: this.state.value })
       );
     }
   }], [{
-    key: "getStores",
+    key: 'getStores',
     value: function getStores() {
       return [formStore];
     }
   }, {
-    key: "calculateState",
+    key: 'calculateState',
     value: function calculateState(prevState) {
       return formStore.getState();
     }
@@ -25708,25 +25708,25 @@ var FormInput = function (_Component2) {
   }
 
   _createClass(FormInput, [{
-    key: "_send",
+    key: '_send',
     value: function _send(e) {
       e.preventDefault();
       FormAction.send(this.refs.myInput.value.trim());
-      this.refs.myInput.value = "";
+      this.refs.myInput.value = '';
       return;
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var message = this.props.data;
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
-        _react2.default.createElement("input", { type: "text", ref: "myInput", defaultValue: "" }),
+        _react2.default.createElement('input', { type: 'text', ref: 'myInput', defaultValue: '' }),
         _react2.default.createElement(
-          "button",
+          'button',
           { onClick: this._send.bind(this) },
-          "Send"
+          'Send'
         )
       );
     }
@@ -25747,10 +25747,10 @@ var FormDisplay = function (_Component3) {
   }
 
   _createClass(FormDisplay, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         this.props.data
       );
