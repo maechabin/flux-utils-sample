@@ -7,21 +7,21 @@ import { ReduceStore, Container } from 'flux/utils';
 const dispatcher = new Dispatcher();
 
 // Action
-const testConstants = {
-  TEST: "test"
+const keys = {
+  SEND: "send"
 };
 
-const TestAction = {
+const FormAction = {
   send(val) {
     dispatcher.dispatch({
-      type: testConstants.TEST,
+      type: keys.SEND,
       value: val
     });
   }
 };
 
 // Store
-class TestStore extends ReduceStore {
+class FormStore extends ReduceStore {
 
   getInitialState() {
     return {
@@ -31,7 +31,7 @@ class TestStore extends ReduceStore {
 
   reduce(state, action) {
     switch (action.type) {
-      case testConstants.TEST:
+      case keys.SEND:
         return {
           "value": action.value
         };
@@ -41,64 +41,61 @@ class TestStore extends ReduceStore {
 };
 
 // Storeのインスタンス生成
-const testStore = new TestStore(dispatcher);
+const formStore = new FormStore(dispatcher);
 
 // View (React Component)
-class TestApp extends Component {
+class FormApp extends Component {
   static getStores() {
-    return [testStore];
+    return [formStore];
   }
-
   static calculateState(prevState) {
-    return testStore.getState();
+    return formStore.getState();
   }
 
   render() {
     console.log(this.state);
     return (
-      <div className="testApp">
-        <TestForm />
-        <TestDisplay data={this.state.value} />
-      </div>
-    );
-  }
-
-}
-
-const TestForm = React.createClass({
-  _send(e) {
-    e.preventDefault();
-    let testValue = this.refs.myInput.value.trim();
-    TestAction.send(testValue);
-    this.refs.myInput.value = "";
-    return;
-  },
-  render() {
-    let message = this.props.data;
-    return (
       <form>
-        <input type="text" ref="myInput" defaultValue="" />
-        <button onClick={this._send}>Send</button>
+        <FormInput />
+        <FormDisplay data={this.state.value} />
       </form>
     );
   }
-});
 
-const TestDisplay = React.createClass({
+};
+
+class FormInput extends Component {
+  _send(e) {
+    e.preventDefault();
+    FormAction.send(this.refs.myInput.value.trim());
+    this.refs.myInput.value = "";
+    return;
+  }
   render() {
     let message = this.props.data;
     return (
-      <div>{message}</div>
+      <div>
+        <input type="text" ref="myInput" defaultValue="" />
+        <button onClick={this._send.bind(this)}>Send</button>
+      </div>
     );
   }
-});
+};
+
+class FormDisplay extends Component {
+  render() {
+    return (
+      <div>{this.props.data}</div>
+    );
+  }
+};
 
 // Container
-const TestAppContainer = Container.create(TestApp);
+const FormAppContainer = Container.create(FormApp);
 
 
 // ReactDom
 render(
-  <TestAppContainer />,
+  <FormAppContainer />,
   document.getElementById("content")
 );
