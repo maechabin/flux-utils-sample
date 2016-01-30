@@ -67,9 +67,9 @@ const TestApp = React.createClass({
 const TestForm = React.createClass({
   send(e) {
     e.preventDefault();
-    let testValue = React.findDOMNode(this.refs.test_value).value.trim();
+    let testValue = this.refs.test_value.value.trim();
     TestAction.test(testValue);
-    React.findDOMNode(this.refs.test_value).value = "";
+    this.refs.test_value.value = "";
     return;
   },
   render() {
