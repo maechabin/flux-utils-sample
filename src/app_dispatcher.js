@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Dispatcher } from 'flux';
 import { EventEmitter } from 'events';
@@ -22,11 +22,11 @@ const FormAction = {
 };
 
 // Store
-var _data = {value: null};
+var stateData = {value: null};
 
 const FormStore = assign({}, EventEmitter.prototype, {
   getAll() {
-    return _data;
+    return stateData;
   },
   emitChange() {
     this.emit(CHANGE_EVENT);
@@ -34,13 +34,13 @@ const FormStore = assign({}, EventEmitter.prototype, {
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   },
-  dispatcherIndex: dispatcher.register((payload) => {
-    if (payload.type === keys.SEND) {
-      // console.log(payload.value);
-      _data.value = payload.value;
-      FormStore.emitChange();
+  dispatcherIndex: dispatcher.register((action) => {
+    switch (action.type) {
+      case: keys.SEND:
+        stateData.value = action.value;
+        FormStore.emitChange();
     }
-  })
+  });
 });
 
 // View (React Component)

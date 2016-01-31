@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Dispatcher } from 'flux';
 import { ReduceStore, Container } from 'flux/utils';
