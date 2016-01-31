@@ -72,7 +72,6 @@ class FormInput extends Component {
     return;
   }
   render() {
-    let message = this.props.data;
     return (
       <div>
         <input type="text" ref="myInput" defaultValue="" />
