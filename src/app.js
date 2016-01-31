@@ -95,5 +95,5 @@ const FormAppContainer = Container.create(FormApp);
 // ReactDom
 render(
   <FormAppContainer />,
-  document.getElementById("content")
+  document.getElementById('content')
 );

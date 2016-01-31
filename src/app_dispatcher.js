@@ -1,33 +1,32 @@
-import React, { PropTypes, Component } from "react";
-import { render } from "react-dom";
-import { Dispatcher } from "flux";
-import { EventEmitter } from "events";
-import assign from "object-assign";
-import { ReduceStore, Container } from 'flux/utils';
+import React, { PropTypes, Component } from 'react';
+import { render } from 'react-dom';
+import { Dispatcher } from 'flux';
+import { EventEmitter } from 'events';
+import assign from 'object-assign';
 
-const testDispatcher = new Dispatcher();
+// Dispatcher
+const dispatcher = new Dispatcher();
 
-const CHANGE_EVENT = "change";
-const testConstants = {
-  TEST: "test"
+// Action
+const CHANGE_EVENT = 'change';
+const keys = {
+  SEND: 'send'
 };
-
-// action
-const TestAction = {
-  test(testValue) {
-    testDispatcher.dispatch({
-      actionType: testConstants.TEST,
-      value: testValue
+const FormAction = {
+  send(val) {
+    dispatcher.dispatch({
+      type: keys.SEND,
+      value: val
     });
   }
 };
 
-// store
-var _test = {value: null};
+// Store
+var _data = {value: null};
 
-const TestStore = assign({}, EventEmitter.prototype, {
+const FormStore = assign({}, EventEmitter.prototype, {
   getAll() {
-    return _test;
+    return _data;
   },
   emitChange() {
     this.emit(CHANGE_EVENT);
@@ -35,63 +34,62 @@ const TestStore = assign({}, EventEmitter.prototype, {
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   },
-  dispatcherIndex: testDispatcher.register((payload) => {
-    if (payload.actionType === testConstants.TEST) {
+  dispatcherIndex: dispatcher.register((payload) => {
+    if (payload.type === keys.SEND) {
       // console.log(payload.value);
-      _test.value = payload.value;
-      TestStore.emitChange();
+      _data.value = payload.value;
+      FormStore.emitChange();
     }
   })
 });
 
-// view
-const TestApp = React.createClass({
+// View (React Component)
+const FormApp = React.createClass({
   getInitialState() {
-    return TestStore.getAll();
+    return FormStore.getAll();
   },
   componentDidMount() {
-    TestStore.addChangeListener(() => {
-      this.setState(TestStore.getAll());
+    FormStore.addChangeListener(() => {
+      this.setState(FormStore.getAll());
     });
   },
   render() {
     return (
-      <div className="testApp">
-        <TestForm />
-        <TestDisplay data={this.state.value} />
+      <div className="formApp">
+        <FormInput />
+        <FormDisplay data={this.state.value} />
       </div>
     );
   }
 });
 
-const TestForm = React.createClass({
-  send(e) {
+const FormInput = React.createClass({
+  _send(e) {
     e.preventDefault();
-    let testValue = this.refs.test_value.value.trim();
-    TestAction.test(testValue);
-    this.refs.test_value.value = "";
+    FormAction.send(this.refs.myInput.value.trim());
+    this.refs.myInput.value = '';
     return;
   },
   render() {
     return (
       <form>
-        <input type="text" ref="test_value" />
-        <button onClick={this.send}>Send</button>
+        <input type="text" ref="myInput" defaultValue="" />
+        <button onClick={this._send}>Send</button>
       </form>
     );
   }
 });
 
-const TestDisplay = React.createClass({
+const FormDisplay = React.createClass({
   render() {
-    let message = this.props.data;
     return (
-      <div>{message}</div>
+      <div>{this.props.data}</div>
     );
   }
 });
 
+// ReactDom
 render(
-  <TestApp />,
-  document.getElementById("content")
+  <FormApp />,
+  document.getElementById('content')
 );

@@ -25718,7 +25718,6 @@ var FormInput = function (_Component2) {
   }, {
     key: 'render',
     value: function render() {
-      var message = this.props.data;
       return _react2.default.createElement(
         'div',
         null,
@@ -25766,6 +25765,6 @@ var FormDisplay = function (_Component3) {
 var FormAppContainer = _utils.Container.create(FormApp);
 
 // ReactDom
-(0, _reactDom.render)(_react2.default.createElement(FormAppContainer, null), document.getElementById("content"));
+(0, _reactDom.render)(_react2.default.createElement(FormAppContainer, null), document.getElementById('content'));
 
 },{"flux":10,"flux/utils":19,"react":178,"react-dom":22}]},{},[179]);
