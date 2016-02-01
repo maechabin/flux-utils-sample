@@ -25608,14 +25608,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var dispatcher = new _flux.Dispatcher();
 
 // Action
-var keys = {
+var act = {
   SEND: 'send'
 };
 
 var FormAction = {
   send: function send(val) {
     dispatcher.dispatch({
-      type: keys.SEND,
+      type: act.SEND,
       value: val
     });
   }
@@ -25643,11 +25643,11 @@ var FormStore = function (_ReduceStore) {
     key: 'reduce',
     value: function reduce(state, action) {
       switch (action.type) {
-        case keys.SEND:
+        case act.SEND:
           return {
             'value': action.value
           };
-      };
+      }
     }
   }]);
 

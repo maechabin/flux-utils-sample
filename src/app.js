@@ -7,14 +7,14 @@ import { ReduceStore, Container } from 'flux/utils';
 const dispatcher = new Dispatcher();
 
 // Action
-const keys = {
+const act = {
   SEND: 'send'
 };
 
 const FormAction = {
   send(val) {
     dispatcher.dispatch({
-      type: keys.SEND,
+      type: act.SEND,
       value: val
     });
   }
@@ -31,11 +31,11 @@ class FormStore extends ReduceStore {
 
   reduce(state, action) {
     switch (action.type) {
-      case keys.SEND:
+      case act.SEND:
         return {
           'value': action.value
         };
-    };
+    }
   }
 
 };

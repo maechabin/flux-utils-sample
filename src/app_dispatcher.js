@@ -9,13 +9,13 @@ const dispatcher = new Dispatcher();
 
 // Action
 const CHANGE_EVENT = 'change';
-const keys = {
+const act = {
   SEND: 'send'
 };
 const FormAction = {
   send(val) {
     dispatcher.dispatch({
-      type: keys.SEND,
+      type: act.SEND,
       value: val
     });
   }
@@ -36,7 +36,7 @@ const FormStore = assign({}, EventEmitter.prototype, {
   },
   dispatcherIndex: dispatcher.register((action) => {
     switch (action.type) {
-      case: keys.SEND:
+      case: act.SEND:
         stateData.value = action.value;
         FormStore.emitChange();
     }
