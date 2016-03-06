@@ -49,6 +49,7 @@ class FormApp extends Component {
     return [formStore];
   }
   static calculateState(prevState) {
+    console.log('prevstate: ' + prevState);
     return formStore.getState();
   }
 

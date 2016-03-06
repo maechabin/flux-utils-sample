@@ -25689,6 +25689,7 @@ var FormApp = function (_Component) {
   }, {
     key: 'calculateState',
     value: function calculateState(prevState) {
+      console.log('prevstate: ' + prevState);
       return formStore.getState();
     }
   }]);
