@@ -31,6 +31,7 @@ class FormStore extends MapStore {
   }
 
   reduce(state, action) {
+    console.log(state);
     switch (action.type) {
       case act.SEND:
         return state.set('value', action.value);
@@ -48,6 +49,7 @@ class FormApp extends Component {
     return [formStore];
   }
   static calculateState(prevState) {
+    console.log('prevstate:' + prevState);
     return {
       'value': formStore.get('value')
     };
@@ -96,5 +98,5 @@ const FormAppContainer = Container.create(FormApp);
 // ReactDom
 render(
   <FormAppContainer />,
-  document.querySelector('.content')
+  document.querySelector('#content')
 );

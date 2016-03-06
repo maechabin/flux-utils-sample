@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "watchify -t babelify ./src/app.js -o ./dist/bundle.js"
+    "watch": "watchify -t babelify ./src/app.js -o ./dist/bundle.js",
+    "watch:i": "watchify -t babelify ./src/app_immutable.js -o ./dist/bundle_immutable.js"
   },
   "author": "",
   "license": "ISC",
